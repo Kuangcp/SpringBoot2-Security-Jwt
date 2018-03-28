@@ -1,11 +1,3 @@
-# 基于流程监控的本科毕业设计管理系统
+# SpringBoot2中使用Security整合JWT
 
-## 技术栈
-1. SpringBoot2
-2. LayUI 考虑Vue 和 iview
-3. Mysql 考虑 Post供热SQL
-
-## 需求
-
-
-
+> 参考 [原项目](https://github.com/freew01f/securing-spring-boot-with-jwts) 修改而来
