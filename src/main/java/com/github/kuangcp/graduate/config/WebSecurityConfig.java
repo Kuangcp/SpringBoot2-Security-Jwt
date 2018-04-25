@@ -37,8 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hello").hasAuthority("AUTH_WRITE")
                 // 角色检查
                 .antMatchers("/world").hasRole("ADMIN")
-                // 所有请求需要身份认证
-                .anyRequest().authenticated()
+                // 对Rest请求需要身份认证, 放行OPTIONS
+            .antMatchers(HttpMethod.POST).authenticated()
+            .antMatchers(HttpMethod.PUT).authenticated()
+            .antMatchers(HttpMethod.DELETE).authenticated()
+            .antMatchers(HttpMethod.GET).authenticated()
                 .and()
                 // 添加一个过滤器 所有访问 /login 的请求交给 JWTLoginFilter 来处理 这个类处理所有的JWT相关内容
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
