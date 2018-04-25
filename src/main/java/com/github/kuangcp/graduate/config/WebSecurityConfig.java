@@ -27,6 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 // 对请求进行认证
                 .authorizeRequests()
+                // 所有OPTIONS请求全部放行
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // 所有 / 的所有请求 都放行
                 .antMatchers("/").permitAll()
                 // 所有 /login 的POST请求 都放行

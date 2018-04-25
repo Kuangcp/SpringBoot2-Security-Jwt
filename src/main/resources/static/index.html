@@ -3,10 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
-</head>
-<body>
 
-Hello
+    <script>
+    // 登录
+    function login(role) {
+  layer.prompt({
+    formType: 0,
+    value: '2',
+    title: '请输入用户名'
+  }, function (value1, index, elem) {
+    layer.close(index);
+    layer.prompt({
+      formType: 1,
+      value: '2',
+      title: '请输入密码'
+    }, function (value2, index, elem) {
+      layer.close(index);
+      var data = {
+        username : value1,
+        password : value2,
+        role : role
+      };
+      data = JSON.stringify(data);
+      console.log('发送  '+data)
+      $.post(host + '/login', data, function (data) {
+        console.log(data);
+        if (data.code === '0' ) {
+          sessionStorage.setItem("randomValue", data.data);
+          layer.msg('登录成功 ')
+        }else{
+          login(role);
+          layer.msg('用户名或密码错误')
+        }
+      }, "json");
+    });
+  });
+}
+      var random = sessionStorage.getItem('randomValue');
+      if (random == null || random === '') {
+        login('student')
+      }
+      
+    function testUse() {
+    // 原生写法
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+        if ( xhr.readyState === 4 ) {
+            if ( ( xhr.status >= 200 && xhr.status < 300 ) || xhr.status == 304 ) {
+            // 成功：处理 xhr.responseText
+            } else {
+            // 失败
+            }
+        }
+        };
+          xhr.open( 'POST', host+'/users', true );
+          xhr.setRequestHeader( 'Content-Type', 'application/json' );
+          xhr.setRequestHeader('Authorization', 'Mythos '+random);
+          xhr.send();
+        // 第二种 JQ 写法
+//         $.get({
+//             // method: 'POST',
+//             url : host+'/users',
+//             contentType: "application/json",
+//             headers:{
+//               'Authorization' : 'Mythos '+random
+//             }
+//           });
+    }
+    </script>
+    </head>
+<body>
+<button  onclick="testUse()">测试</button>
+
+因为仓库是毕业设计的一个前身，这个页面的接口是对应不上的， 需要去掉role字段， 大致的思路了解即可
 
 </body>
 </html>
