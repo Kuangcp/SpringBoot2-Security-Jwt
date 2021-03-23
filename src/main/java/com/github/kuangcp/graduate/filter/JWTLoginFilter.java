@@ -1,7 +1,7 @@
-package com.github.kuangcp.graduate.controller.filter;
+package com.github.kuangcp.graduate.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.kuangcp.graduate.service.security.AccountCredentials;
+import com.github.kuangcp.graduate.service.security.vo.AccountCredentials;
 import com.github.kuangcp.graduate.service.security.TokenAuthenticationService;
 import com.github.kuangcp.graduate.util.JSONResult;
 import org.springframework.security.authentication.AuthenticationManager;

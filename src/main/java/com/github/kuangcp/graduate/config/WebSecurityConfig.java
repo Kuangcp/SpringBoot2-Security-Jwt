@@ -2,8 +2,8 @@ package com.github.kuangcp.graduate.config;
 
 import com.github.kuangcp.graduate.constant.AuthType;
 import com.github.kuangcp.graduate.constant.RoleType;
-import com.github.kuangcp.graduate.controller.filter.JWTAuthenticationFilter;
-import com.github.kuangcp.graduate.controller.filter.JWTLoginFilter;
+import com.github.kuangcp.graduate.filter.JWTAuthenticationFilter;
+import com.github.kuangcp.graduate.filter.JWTLoginFilter;
 import com.github.kuangcp.graduate.service.security.CustomAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

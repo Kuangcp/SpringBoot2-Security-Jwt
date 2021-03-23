@@ -1,4 +1,4 @@
-package com.github.kuangcp.graduate.controller.filter;
+package com.github.kuangcp.graduate.filter;
 
 import com.github.kuangcp.graduate.service.security.TokenAuthenticationService;
 import org.springframework.security.core.Authentication;

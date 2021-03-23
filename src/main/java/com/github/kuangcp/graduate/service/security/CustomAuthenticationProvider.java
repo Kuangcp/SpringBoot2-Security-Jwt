@@ -2,6 +2,7 @@ package com.github.kuangcp.graduate.service.security;
 
 import com.github.kuangcp.graduate.constant.AuthType;
 import com.github.kuangcp.graduate.constant.RoleType;
+import com.github.kuangcp.graduate.service.security.vo.GrantedAuthorityBO;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

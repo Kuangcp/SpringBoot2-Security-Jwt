@@ -1,4 +1,4 @@
-package com.github.kuangcp.graduate.service.security;
+package com.github.kuangcp.graduate.service.security.vo;
 
 import org.springframework.security.core.GrantedAuthority;
 
