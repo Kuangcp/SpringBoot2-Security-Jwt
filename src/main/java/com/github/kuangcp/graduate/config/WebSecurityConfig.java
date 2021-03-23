@@ -1,5 +1,6 @@
 package com.github.kuangcp.graduate.config;
 
+import com.github.kuangcp.graduate.constant.RoleType;
 import com.github.kuangcp.graduate.controller.filter.JWTAuthenticationFilter;
 import com.github.kuangcp.graduate.controller.filter.JWTLoginFilter;
 import com.github.kuangcp.graduate.service.security.CustomAuthenticationProvider;
@@ -34,14 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 所有 /login 的POST请求 都放行
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 // 权限检查
-                .antMatchers("/hello").hasAuthority("AUTH_WRITE")
+                .antMatchers("/hello").hasAuthority(RoleType.CUSTOM)
                 // 角色检查
-                .antMatchers("/world").hasRole("ADMIN")
-                // 对Rest请求需要身份认证, 放行OPTIONS
-            .antMatchers(HttpMethod.POST).authenticated()
-            .antMatchers(HttpMethod.PUT).authenticated()
-            .antMatchers(HttpMethod.DELETE).authenticated()
-            .antMatchers(HttpMethod.GET).authenticated()
+                .antMatchers("/world").hasRole(RoleType.CUSTOM)
+                // 对 REST 请求需要身份认证
+                .antMatchers(HttpMethod.POST).authenticated()
+                .antMatchers(HttpMethod.PUT).authenticated()
+                .antMatchers(HttpMethod.DELETE).authenticated()
+                .antMatchers(HttpMethod.GET).authenticated()
                 .and()
                 // 添加一个过滤器 所有访问 /login 的请求交给 JWTLoginFilter 来处理 这个类处理所有的JWT相关内容
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),

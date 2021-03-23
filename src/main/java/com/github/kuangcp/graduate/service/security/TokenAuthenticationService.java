@@ -1,5 +1,6 @@
 package com.github.kuangcp.graduate.service.security;
 
+import com.github.kuangcp.graduate.constant.RoleType;
 import com.github.kuangcp.graduate.util.JSONResult;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -32,7 +33,7 @@ public class TokenAuthenticationService {
         // 生成JWT
         String JWT = Jwts.builder()
                 // 保存权限（角色）
-                .claim("authorities", "ROLE_ADMIN,AUTH_WRITE")
+                .claim("authorities", RoleType.getRole())
                 // 用户名写入标题
                 .setSubject(username)
                 // 有效期设置
@@ -68,7 +69,7 @@ public class TokenAuthenticationService {
             String user = claims.getSubject();
 
             // 得到 权限（角色）
-            List<GrantedAuthority> authorities =  AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
+            List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
 
             // 返回验证令牌
             return user != null ?

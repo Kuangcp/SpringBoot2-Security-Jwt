@@ -38,7 +38,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         // 返回一个验证令牌
         return getAuthenticationManager().
-                authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(),creds.getPassword()));
+                authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword()));
     }
 
     @Override
@@ -53,6 +53,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
                                               AuthenticationException failed) throws IOException {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getOutputStream().println(JSONResult.fillResultString(500, "Internal Server Error!!!", "null"));
+        response.getOutputStream().println(JSONResult.fillResultString(500, "auth failed", null));
     }
 }

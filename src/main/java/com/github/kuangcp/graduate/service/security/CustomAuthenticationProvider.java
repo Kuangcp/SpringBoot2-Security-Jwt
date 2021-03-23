@@ -1,5 +1,6 @@
 package com.github.kuangcp.graduate.service.security;
 
+import com.github.kuangcp.graduate.constant.RoleType;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,15 +23,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         // 认证逻辑
         if (name.equals("admin") && password.equals("123456")) {
-
             // 这里设置权限和角色
             ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add( new GrantedAuthorityImpl("ROLE_ADMIN") );
-            authorities.add( new GrantedAuthorityImpl("AUTH_WRITE") );
+            authorities.add(new GrantedAuthorityImpl(RoleType.ADMIN));
+            authorities.add(new GrantedAuthorityImpl(RoleType.CUSTOM));
             // 生成令牌
             return new UsernamePasswordAuthenticationToken(name, password, authorities);
-        }else {
-            throw new BadCredentialsException("密码错误~");
+        }
+        if (name.equals("user") && password.equals("123456")) {
+            ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new GrantedAuthorityImpl(RoleType.CUSTOM));
+            return new UsernamePasswordAuthenticationToken(name, password, authorities);
+        } else {
+            throw new BadCredentialsException("密码错误");
         }
     }
 

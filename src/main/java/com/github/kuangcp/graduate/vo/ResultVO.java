@@ -1,7 +1,6 @@
-package com.github.kuangcp.graduate.domain.transfer;
+package com.github.kuangcp.graduate.vo;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.AllArgsConstructor;
 
 /**
  * Created by https://github.com/kuangcp
@@ -10,9 +9,15 @@ import lombok.AllArgsConstructor;
  * @date 18-3-28  下午3:38
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-@AllArgsConstructor
-public class ResultObject{
+public class ResultVO {
+
     Integer status;
     String message;
     Object result;
+
+    public ResultVO(Integer status, String message, Object result) {
+        this.status = status;
+        this.message = message;
+        this.result = result;
+    }
 }
