@@ -6,7 +6,4 @@ package com.github.kuangcp.graduate.constant;
 public interface RoleType {
     String ADMIN = "ADMIN";
     String CUSTOM = "CUSTOM";
-    static String  getRole(){
-        return ADMIN +","+ CUSTOM;
-    }
 }

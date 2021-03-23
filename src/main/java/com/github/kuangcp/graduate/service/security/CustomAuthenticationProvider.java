@@ -1,5 +1,6 @@
 package com.github.kuangcp.graduate.service.security;
 
+import com.github.kuangcp.graduate.constant.AuthType;
 import com.github.kuangcp.graduate.constant.RoleType;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,6 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 自定义身份认证验证组件
@@ -24,15 +26,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         // 认证逻辑
         if (name.equals("admin") && password.equals("123456")) {
             // 这里设置权限和角色
-            ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new GrantedAuthorityImpl(RoleType.ADMIN));
-            authorities.add(new GrantedAuthorityImpl(RoleType.CUSTOM));
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(GrantedAuthorityBO.buildRole(RoleType.ADMIN));
+            authorities.add(GrantedAuthorityBO.buildAuth(AuthType.WRITE));
             // 生成令牌
             return new UsernamePasswordAuthenticationToken(name, password, authorities);
         }
         if (name.equals("user") && password.equals("123456")) {
-            ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new GrantedAuthorityImpl(RoleType.CUSTOM));
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(GrantedAuthorityBO.buildRole(RoleType.CUSTOM));
             return new UsernamePasswordAuthenticationToken(name, password, authorities);
         } else {
             throw new BadCredentialsException("密码错误");

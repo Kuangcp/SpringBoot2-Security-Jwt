@@ -17,7 +17,7 @@ import java.util.ArrayList;
 class TestJWTController {
 
     // 路由映射到/users 并且限制请求类型仅仅为json
-    @RequestMapping(value = "/users", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/list", produces = "application/json;charset=UTF-8")
     public String usersList() {
         ArrayList<String> users = new ArrayList<String>() {{
             add("tom");
@@ -27,13 +27,13 @@ class TestJWTController {
         return JSONResult.fillResultString(0, "", users);
     }
 
-    @RequestMapping(value = "/hello", produces = "application/json;charset=UTF-8")
-    public String hello() {
-        return JSONResult.fillResultString(0, "OK", null);
+    @RequestMapping(value = "/user", produces = "application/json;charset=UTF-8")
+    public String user() {
+        return JSONResult.fillResultString(0, "user", null);
     }
 
-    @RequestMapping(value = "/world", produces = "application/json;charset=UTF-8")
-    public String world() {
-        return JSONResult.fillResultString(0, "OK", null);
+    @RequestMapping(value = "/admin", produces = "application/json;charset=UTF-8")
+    public String admin() {
+        return JSONResult.fillResultString(0, "admin", null);
     }
 }

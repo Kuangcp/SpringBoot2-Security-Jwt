@@ -1,5 +1,6 @@
 package com.github.kuangcp.graduate.config;
 
+import com.github.kuangcp.graduate.constant.AuthType;
 import com.github.kuangcp.graduate.constant.RoleType;
 import com.github.kuangcp.graduate.controller.filter.JWTAuthenticationFilter;
 import com.github.kuangcp.graduate.controller.filter.JWTLoginFilter;
@@ -34,10 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 // 所有 /login 的POST请求 都放行
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-                // 权限检查
-                .antMatchers("/hello").hasAuthority(RoleType.CUSTOM)
-                // 角色检查
-                .antMatchers("/world").hasRole(RoleType.CUSTOM)
+                // 权限/角色 检查
+                .antMatchers("/admin").hasAuthority(AuthType.WRITE)
+//                .antMatchers("/admin").hasRole(RoleType.ADMIN)
+                .antMatchers("/user").hasAnyRole(RoleType.CUSTOM, RoleType.ADMIN)
                 // 对 REST 请求需要身份认证
                 .antMatchers(HttpMethod.POST).authenticated()
                 .antMatchers(HttpMethod.PUT).authenticated()

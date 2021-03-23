@@ -17,7 +17,7 @@
 ```
 使用上面获取的TOKEN值去获取用户信息
 
-`curl -H "Content-Type: application/json" -H "Authorization: Bearer TOKEN值" http://127.0.0.1:8080/users`
+`curl -H "Content-Type: application/json" -H "Authorization: Bearer TOKEN值" http://127.0.0.1:8889/users`
  
  返回结果:
 ```json
